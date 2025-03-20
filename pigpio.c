@@ -4549,9 +4549,10 @@ static void spiGoS(
       cnt4w = count;
       cnt3w = 0;
    }
-
-   spiReg[SPI_CLK] = 250000000/speed;
-
+  
+   if (pi_is_2711)    spiReg[SPI_CLK] = 500000000/speed;
+   else    spiReg[SPI_CLK] = 250000000/speed;
+ 
    spiReg[SPI_CS] = spiDefaults | SPI_CS_TA; /* start */
 
    cnt = cnt4w;
